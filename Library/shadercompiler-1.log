@@ -1,0 +1,152 @@
+Base path: C:/Program Files (x86)/Unity4/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-1-5020
+Cmd: getPlatforms
+Cmd: preprocess
+  insize=1399 outsize=473 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (26): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=1228 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=435 outsize=435 ok=1
+Cmd: preprocess
+  insize=7913 outsize=585 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (90): undeclared identifier 'UnityObjectToClipPos'
+  api=4 type=0 insize=7632 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1615 outsize=2246 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (0): Vertex program 'tessvert_surf': unknown input semantics TEXCOORD/2
+
+  api=4 type=0 insize=8304 outsize=0 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=0
+Cmd: preprocess
+  insize=4405 outsize=1117 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (69): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=3460 outsize=0 kw=WATER_REFRACTIVE ok=0
+Cmd: preprocess
+  insize=1099 outsize=1249 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5361 outsize=4012 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5361 outsize=2639 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2693 outsize=3053 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2693 outsize=2558 kw=POINT ok=1
+Cmd: preprocess
+  insize=1454 outsize=2191 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (0): Vertex program 'tessvert_surf': unknown input semantics TEXCOORD/2
+
+  api=4 type=0 insize=8472 outsize=0 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=0
+Cmd: preprocess
+  insize=1013 outsize=1267 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4860 outsize=3070 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4860 outsize=1883 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2862 outsize=3102 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2862 outsize=2184 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2279 outsize=1477 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2279 outsize=632 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4533 outsize=3159 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4533 outsize=1827 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+Cmd: preprocess
+  insize=12931 outsize=2646 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at WaterInclude.cginc(74): undeclared identifier 'ComputeNonStereoScreenPos'
+  api=4 type=0 insize=10300 outsize=0 kw=WATER_REFLECTIVE WATER_VERTEX_DISPLACEMENT_ON WATER_EDGEBLEND_ON ok=0
+Cmd: preprocess
+  insize=1044 outsize=883 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4808 outsize=2607 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4808 outsize=1453 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2847 outsize=2875 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2847 outsize=1810 kw=POINT ok=1
+Cmd: preprocess
+  insize=2378 outsize=1092 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (55): undeclared identifier 'UnityObjectToClipPos'
+  api=4 type=0 insize=1533 outsize=0 kw=SOFTPARTICLES_OFF ok=0
+Cmd: preprocess
+  insize=2236 outsize=975 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (53): undeclared identifier 'UnityObjectToClipPos'
+  api=4 type=0 insize=1560 outsize=0 kw=SOFTPARTICLES_OFF ok=0
+Cmd: preprocess
+  insize=12069 outsize=2526 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at WaterInclude.cginc(74): undeclared identifier 'ComputeNonStereoScreenPos'
+  api=4 type=0 insize=9561 outsize=0 kw=WATER_REFLECTIVE WATER_VERTEX_DISPLACEMENT_ON WATER_EDGEBLEND_ON ok=0
+Cmd: preprocess
+  insize=2667 outsize=1156 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (49): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=1813 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1567 outsize=642 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (20): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=1231 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1876 outsize=596 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (30): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=1585 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1013 outsize=1508 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5312 outsize=4012 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5312 outsize=2615 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2662 outsize=3053 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2662 outsize=2550 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2039 outsize=1477 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2039 outsize=673 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4721 outsize=3801 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4721 outsize=1875 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF HDR_LIGHT_PREPASS_OFF ok=1
+Cmd: preprocess
+  insize=1457 outsize=506 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (28): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=1253 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=2273 outsize=1036 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (55): undeclared identifier 'UnityObjectToClipPos'
+  api=4 type=0 insize=1536 outsize=0 kw=SOFTPARTICLES_OFF ok=0
+Cmd: preprocess
+  insize=1308 outsize=384 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (37): unrecognized identifier 'UNITY_FOG_COORDS'
+  api=4 type=0 insize=1226 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=880 outsize=1108 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4717 outsize=3557 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4717 outsize=1648 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2465 outsize=2875 kw=POINT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2465 outsize=1607 kw=POINT ok=1
+Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
+
+
+Quitting shader compiler process
