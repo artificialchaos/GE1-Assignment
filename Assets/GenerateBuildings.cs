@@ -24,7 +24,6 @@ public class GenerateBuildings : MonoBehaviour
                 {
                     Instantiate(smallBuilding, new Vector3(x * 10, 15, y * 10), Quaternion.identity);
                 }
-                Debug.Log(buildType);
             }
         }
     }

@@ -5,6 +5,10 @@ using UnityEngine;
 public class TerrainGeneration : MonoBehaviour
 {
     public GameObject tilePrefab;
+    public GameObject building;
+    public GameObject roadseg1;
+    public GameObject roadseg2;
+
     public Transform player;
     public int quadsPerTile;
 
@@ -86,8 +90,14 @@ public class TerrainGeneration : MonoBehaviour
                 newTiles.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
                 foreach (Vector3 pos in newTiles)
                 {
+                    //tile is created
+                    //add code for building and road generation here?
                     GameObject t = GameObject.Instantiate<GameObject>(tilePrefab, pos, Quaternion.identity);
+                    //GameObject b = GameObject.Instantiate<GameObject>(building, new Vector3(pos.x, pos.y + 15, pos.z), Quaternion.identity);
+                    GameObject r1 = GameObject.Instantiate<GameObject>(roadseg1, new Vector3(pos.x, pos.y + 20, pos.z), Quaternion.identity);
+                    GameObject r2 = GameObject.Instantiate<GameObject>(roadseg2, new Vector3(pos.x, pos.y + 20, pos.z), Quaternion.identity);
                     t.transform.parent = this.transform;
+                    //b.transform.parent = this.transform;
                     string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                     t.name = tilename;
                     Tile tile = new Tile(t, updateTime);
