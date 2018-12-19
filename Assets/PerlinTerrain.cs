@@ -96,16 +96,14 @@ public class PerlinTerrain : MonoBehaviour
 
     public static float SampleCell0(float x, float y)
     {
-
-        return Mathf.Sin(Utility.Map(x, 0, 10, 0, Mathf.PI))
-        * Mathf.Sin(Utility.Map(y, 0, 10, 0, Mathf.PI)) * 40;
+        return Mathf.Sin(Utility.Map(x, 0, 10, 0, Mathf.PI)) * Mathf.Sin(Utility.Map(y, 0, 10, 0, Mathf.PI)) * 40;
+        //return 0;
     }
 
     public static float SampleCell1(float x, float y)
     {
-        //Debug.Log("samplecell 1 is called");
-        return (Mathf.PerlinNoise(10000 + x / 100, 10000 + y / 100) * 10)
-         + (Mathf.PerlinNoise(10000 + x / 1000, 10000 + y / 1000) * 30)
-         + (Mathf.PerlinNoise(1000 + x / 5, 100 + y / 5) * 2);
+        return (Mathf.PerlinNoise(10000 + x / 100, 10000 + y / 100) * 2)
+         + (Mathf.PerlinNoise(10000 + x / 1000, 10000 + y / 1000) * 5)
+         + (Mathf.PerlinNoise(1000 + x / 5, 100 + y / 5) * 1);
     }
 }
