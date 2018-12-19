@@ -7,7 +7,7 @@ public class PerlinTerrain : MonoBehaviour
 
     public int quadsPerTile = 10;
 
-    public Material meshMaterial;
+    public Material Material;
 
     public float amplitude = 50;
 
@@ -28,7 +28,7 @@ public class PerlinTerrain : MonoBehaviour
     Vector2 offset;
     void Awake()
     {
-        Debug.Log("awake is executed");
+        
         offset = Random.insideUnitCircle * Random.Range(0, 1000);
         MeshFilter mf = gameObject.AddComponent<MeshFilter>(); 
         MeshRenderer mr = gameObject.AddComponent<MeshRenderer>(); 
@@ -90,7 +90,7 @@ public class PerlinTerrain : MonoBehaviour
         m.uv = uv;
         m.triangles = triangles;
         m.RecalculateNormals();
-        mr.material = meshMaterial;
+        mr.material = Material;
         mc.sharedMesh = m;
         mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         mr.receiveShadows = true;

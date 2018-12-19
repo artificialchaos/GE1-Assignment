@@ -27,7 +27,8 @@ public class TerrainGeneration : MonoBehaviour
 
     void Start()
     {
-
+        //Vector3[] tileMeshVertices = tilePrefab.GetComponent<MeshCollider>().sharedMesh.vertices;
+        //Debug.Log(tileMeshVertices);
         PerlinTerrain tt = tilePrefab.GetComponent<PerlinTerrain>();
         if (tt != null)
         {
