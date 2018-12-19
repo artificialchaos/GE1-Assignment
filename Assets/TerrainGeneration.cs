@@ -22,9 +22,22 @@ public class TerrainGeneration : MonoBehaviour
         public float creationTime;
 
 
-        public Tile(GameObject t, float ct)
+        public Tile(GameObject tm, float ct)
         {
-            theTile = t;
+            theTile = tm;
+            creationTime = ct;
+        }
+    }
+
+    class Road
+    {
+        public GameObject theRoad;
+        public float creationTime;
+
+
+        public Road(GameObject rd, float ct)
+        {
+            theRoad = rd;
             creationTime = ct;
         }
     }
@@ -50,6 +63,7 @@ public class TerrainGeneration : MonoBehaviour
 
     Queue<GameObject> oldGameObjects = new Queue<GameObject>();
     Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
+    Dictionary<string, Road> roads = new Dictionary<string, Road>();
 
     private IEnumerator GenerateWorldAroundPlayer()
     {
@@ -68,15 +82,21 @@ public class TerrainGeneration : MonoBehaviour
 
                 int playerX = (int)(Mathf.Floor((player.transform.position.x) / (quadsPerTile)) * quadsPerTile);
                 int playerZ = (int)(Mathf.Floor((player.transform.position.z) / (quadsPerTile)) * quadsPerTile);
+
                 List<Vector3> newTiles = new List<Vector3>();
+                List<Vector3> newRoads = new List<Vector3>();
+
+
                 for (int x = -halfTile; x < halfTile; x++)
                 {
                     for (int z = -halfTile; z < halfTile; z++)
                     {
-                        Vector3 pos = new Vector3((x * quadsPerTile + playerX),
-                            0,
-                            (z * quadsPerTile + playerZ));
+                        Vector3 pos = new Vector3((x * quadsPerTile + playerX), 0, (z * quadsPerTile + playerZ));
+
                         string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+                        string roadname1 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_1";
+                        string roadname2 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_2";
+
                         if (!tiles.ContainsKey(tilename))
                         {
                             newTiles.Add(pos);
@@ -85,9 +105,22 @@ public class TerrainGeneration : MonoBehaviour
                         {
                             (tiles[tilename] as Tile).creationTime = updateTime;
                         }
+
+                        if (!roads.ContainsKey(roadname1))
+                        {
+                            newRoads.Add(pos);
+                        }
+                        else
+                        {
+                            (roads[roadname1] as Road).creationTime = updateTime;
+                            (roads[roadname2] as Road).creationTime = updateTime;
+                        }
                     }
                 }
+
                 newTiles.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
+                newRoads.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
+
                 foreach (Vector3 pos in newTiles)
                 {
                     //tile is created
@@ -99,13 +132,27 @@ public class TerrainGeneration : MonoBehaviour
                     t.transform.parent = this.transform;
                     //b.transform.parent = this.transform;
                     string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+                    string roadname1 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_1";
+                    string roadname2 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_2";
+
                     t.name = tilename;
+                    r1.name = roadname1;
+                    r2.name = roadname2;
+
+                    Road road1 = new Road(r1, updateTime);
+                    Road road2 = new Road(r2, updateTime);
                     Tile tile = new Tile(t, updateTime);
+
                     tiles[tilename] = tile;
+                    roads[roadname1] = road1;
+                    roads[roadname2] = road2;
+
                     yield return null;
                 }
 
                 Dictionary<string, Tile> newTerrain = new Dictionary<string, Tile>();
+                Dictionary<string, Road> newRoadSystem = new Dictionary<string, Road>();
+
                 foreach (Tile tile in tiles.Values)
                 {
                     if (tile.creationTime != updateTime)
@@ -117,6 +164,18 @@ public class TerrainGeneration : MonoBehaviour
                         newTerrain[tile.theTile.name] = tile;
                     }
                 }
+                foreach (Road road in roads.Values)
+                {
+                    if (road.creationTime != updateTime)
+                    {
+                        oldGameObjects.Enqueue(road.theRoad);
+                    }
+                    else
+                    {
+                        newRoadSystem[road.theRoad.name] = road;
+                    }
+                }
+                roads = newRoadSystem;
                 tiles = newTerrain;
                 startPos = player.transform.position;
             }
