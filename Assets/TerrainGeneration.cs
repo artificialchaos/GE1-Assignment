@@ -6,6 +6,7 @@ public class TerrainGeneration : MonoBehaviour
 {
     public GameObject tilePrefab;
     public GameObject tallbuilding;
+    public GameObject house;
     public GameObject roadseg1;
     public GameObject roadseg2;
 
@@ -133,21 +134,38 @@ public class TerrainGeneration : MonoBehaviour
 
                     //GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(rnd.Next((int)pos.x + 6, (int)pos.x + 70), 
                     //   pos.y + 4, rnd.Next((int)pos.x + 6, (int)pos.x + 70)), Quaternion.identity);
-                    int xdisplacement = rnd.Next(6, 35);
-                    int ydisplacement = rnd.Next(6, 35);
+                    int xdisplacement = rnd.Next(10, 35);
+                    int ydisplacement = rnd.Next(10, 35);
 
-                    int b1_height = rnd.Next(25, 45);
-                    int b2_height = rnd.Next(25, 45);
-                    int b3_height = rnd.Next(25, 45);
-                    int b4_height = rnd.Next(25, 45);
+                    int house_displacement_1 = rnd.Next(3, 8);
+                    int house_displacement_2 = rnd.Next(3, 8);
 
-                    GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 15, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject h1 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + house_displacement_1, pos.y + 8, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject h2 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + xdisplacement, pos.y + 8, pos.z + house_displacement_2), Quaternion.identity);
+
+                    GameObject h3 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - house_displacement_1, pos.y + 8, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject h4 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - xdisplacement, pos.y + 8, pos.z + house_displacement_2), Quaternion.identity);
+
+                    GameObject h5 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + house_displacement_1, pos.y + 8, pos.z - ydisplacement), Quaternion.identity);
+                    GameObject h6 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + xdisplacement, pos.y + 8, pos.z - house_displacement_2), Quaternion.identity);
+
+                    GameObject h7 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - house_displacement_1, pos.y - 8, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject h8 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - xdisplacement, pos.y + 8, pos.z - house_displacement_2), Quaternion.identity);
+
+
+
+                    int b1_height = rnd.Next(20, 50);
+                    int b2_height = rnd.Next(20, 50);
+                    int b3_height = rnd.Next(20, 50);
+                    int b4_height = rnd.Next(20, 50);
+
+                    GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
                     b1.transform.localScale = new Vector3(5, b1_height, 5);
-                    GameObject b2 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 15, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject b2 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
                     b2.transform.localScale = new Vector3(5, b2_height, 5);
-                    GameObject b3 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 15, pos.z - ydisplacement), Quaternion.identity);
+                    GameObject b3 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 10, pos.z - ydisplacement), Quaternion.identity);
                     b3.transform.localScale = new Vector3(5, b3_height, 5);
-                    GameObject b4 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 15, pos.z - ydisplacement), Quaternion.identity);
+                    GameObject b4 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z - ydisplacement), Quaternion.identity);
                     b4.transform.localScale = new Vector3(5, b4_height, 5);
 
                     string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
