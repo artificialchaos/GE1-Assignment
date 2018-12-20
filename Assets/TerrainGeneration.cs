@@ -5,7 +5,7 @@ using UnityEngine;
 public class TerrainGeneration : MonoBehaviour
 {
     public GameObject tilePrefab;
-    public GameObject building;
+    public GameObject tallbuilding;
     public GameObject roadseg1;
     public GameObject roadseg2;
 
@@ -123,14 +123,23 @@ public class TerrainGeneration : MonoBehaviour
 
                 foreach (Vector3 pos in newTiles)
                 {
-                    //tile is created
-                    //add code for building and road generation here?
+                    System.Random rnd = new System.Random();
+
                     GameObject t = GameObject.Instantiate<GameObject>(tilePrefab, pos, Quaternion.identity);
-                    //GameObject b = GameObject.Instantiate<GameObject>(building, new Vector3(pos.x, pos.y + 15, pos.z), Quaternion.identity);
+                    t.transform.parent = this.transform;
+
                     GameObject r1 = GameObject.Instantiate<GameObject>(roadseg1, new Vector3(pos.x, pos.y + 4, pos.z), Quaternion.identity);
                     GameObject r2 = GameObject.Instantiate<GameObject>(roadseg2, new Vector3(pos.x, pos.y + 4, pos.z), Quaternion.identity);
-                    t.transform.parent = this.transform;
-                    //b.transform.parent = this.transform;
+
+                    //GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(rnd.Next((int)pos.x + 6, (int)pos.x + 70), 
+                    //   pos.y + 4, rnd.Next((int)pos.x + 6, (int)pos.x + 70)), Quaternion.identity);
+                    int xdisplacement = rnd.Next(6, 35);
+                    int ydisplacement = rnd.Next(6, 35);
+                    GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject b2 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject b3 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 10, pos.z - ydisplacement), Quaternion.identity);
+                    GameObject b4 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z - ydisplacement), Quaternion.identity);
+
                     string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                     string roadname1 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_1";
                     string roadname2 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_2";
