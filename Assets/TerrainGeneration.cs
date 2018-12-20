@@ -61,10 +61,10 @@ public class TerrainGeneration : MonoBehaviour
     void Start()
     {
 
-        PerlinTerrain tt = tilePrefab.GetComponent<PerlinTerrain>();
-        if (tt != null)
+        PerlinTerrain tp = tilePrefab.GetComponent<PerlinTerrain>();
+        if (tp != null)
         {
-            quadsPerTile = tt.quadsPerTile;
+            quadsPerTile = tp.quadsPerTile;
         }
 
         if (player == null)
@@ -72,7 +72,7 @@ public class TerrainGeneration : MonoBehaviour
             player = Camera.main.transform;
         }
 
-        StartCoroutine(GenerateWorldAroundPlayer());
+        StartCoroutine(GenerateWorld());
 
     }
 
@@ -85,7 +85,7 @@ public class TerrainGeneration : MonoBehaviour
     //array containing values representing the 4 directions the car can face
     int[] carRotation = { 0, 90, 180, 270 };
 
-    private IEnumerator GenerateWorldAroundPlayer()
+    private IEnumerator GenerateWorld()
     {
         int xMove = int.MaxValue;
         int zMove = int.MaxValue;

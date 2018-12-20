@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.745283, g: 0.7277056, b: 0.7277056, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.003
+  m_FogDensity: 0.002
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -157,7 +157,7 @@ MonoBehaviour:
   tallbuilding: {fileID: 1554088581518116, guid: f1f4ef33d48035b46af2d9342aa97d71,
     type: 2}
   house: {fileID: 1285053089819384, guid: 516d26aa073e0d2478ec3e32a0495f5b, type: 2}
-  car: {fileID: 1804209520740390, guid: 10b42a1c31fb612438d023898eeda3d1, type: 2}
+  car: {fileID: 1123839617841718, guid: 183322a9b3d486a45af34098d8e7bc5e, type: 2}
   roadseg1: {fileID: 1950518545194638, guid: f9af5419488e6c44cacb03f80f8a5df6, type: 2}
   roadseg2: {fileID: 1690913093984548, guid: 80c28fa594afcdb4f956c1c656713e26, type: 2}
   player: {fileID: 98255741}
@@ -320,7 +320,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
