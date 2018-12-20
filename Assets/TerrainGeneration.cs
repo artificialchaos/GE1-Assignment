@@ -182,7 +182,8 @@ public class TerrainGeneration : MonoBehaviour
                     GameObject t = GameObject.Instantiate<GameObject>(tilePrefab, pos, Quaternion.identity);
                     t.transform.parent = this.transform;
 
-                    int rotation = rnd.Next(0, 4);
+                    int direction = rnd.Next(0, 4);
+                    int rotation = carRotation[direction];
                     GameObject cr = GameObject.Instantiate<GameObject>(car, new Vector3(pos.x, pos.y + 6, pos.z), Quaternion.Euler(0, rotation, 0));
                     //cr.transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
 

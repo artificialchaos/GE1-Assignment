@@ -10,7 +10,7 @@ public class MoveCar : MonoBehaviour {
 	
 	
 	void Update () {
-        transform.Translate(Vector3.forward * Time.deltaTime * 4);
+        transform.Translate(Vector3.forward * Time.deltaTime * 5);
 
     }
 }
