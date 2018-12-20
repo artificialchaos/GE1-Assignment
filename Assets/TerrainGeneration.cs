@@ -7,6 +7,7 @@ public class TerrainGeneration : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject tallbuilding;
     public GameObject house;
+    public GameObject car;
     public GameObject roadseg1;
     public GameObject roadseg2;
 
@@ -79,6 +80,8 @@ public class TerrainGeneration : MonoBehaviour
     Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
     Dictionary<string, Road> roads = new Dictionary<string, Road>();
     Dictionary<string, Building> buildings = new Dictionary<string, Building>();
+
+    int[] carRotation = { 0, 90, 180, 270 };
 
     private IEnumerator GenerateWorldAroundPlayer()
     {
@@ -179,14 +182,18 @@ public class TerrainGeneration : MonoBehaviour
                     GameObject t = GameObject.Instantiate<GameObject>(tilePrefab, pos, Quaternion.identity);
                     t.transform.parent = this.transform;
 
+                    int rotation = rnd.Next(0, 4);
+                    GameObject cr = GameObject.Instantiate<GameObject>(car, new Vector3(pos.x, pos.y + 6, pos.z), Quaternion.Euler(0, rotation, 0));
+                    //cr.transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
+
                     GameObject r1 = GameObject.Instantiate<GameObject>(roadseg1, new Vector3(pos.x, pos.y + 4, pos.z), Quaternion.identity);
                     GameObject r2 = GameObject.Instantiate<GameObject>(roadseg2, new Vector3(pos.x, pos.y + 4, pos.z), Quaternion.identity);
 
                     int xdisplacement = rnd.Next(10, 35);
                     int ydisplacement = rnd.Next(10, 35);
 
-                    int house_displacement_1 = rnd.Next(4, 7);
-                    int house_displacement_2 = rnd.Next(4, 7);
+                    int house_displacement_1 = rnd.Next(4, 8);
+                    int house_displacement_2 = rnd.Next(4, 8);
 
                     GameObject h1 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + house_displacement_1, pos.y + 8, pos.z + ydisplacement), Quaternion.identity);
                     GameObject h2 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + xdisplacement, pos.y + 8, pos.z + house_displacement_2), Quaternion.identity);
@@ -197,7 +204,7 @@ public class TerrainGeneration : MonoBehaviour
                     GameObject h5 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + house_displacement_1, pos.y + 8, pos.z - ydisplacement), Quaternion.identity);
                     GameObject h6 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x + xdisplacement, pos.y + 8, pos.z - house_displacement_2), Quaternion.identity);
 
-                    GameObject h7 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - house_displacement_1, pos.y - 8, pos.z + ydisplacement), Quaternion.identity);
+                    GameObject h7 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - house_displacement_1, pos.y - 8, pos.z - ydisplacement), Quaternion.identity);
                     GameObject h8 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - xdisplacement, pos.y + 8, pos.z - house_displacement_2), Quaternion.identity);
 
 
