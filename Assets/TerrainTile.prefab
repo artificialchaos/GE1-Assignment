@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653361990835734}
   - component: {fileID: 114185419172218418}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: TerrainTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07463c10fb3d44243b6d4e5b51f541c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quadsPerTile: 50
+  quadsPerTile: 75
   Material: {fileID: 2100000, guid: a5aed99d61cb0214fbffde34e3813ab9, type: 2}
   amplitude: 10
   whichSampler: 1

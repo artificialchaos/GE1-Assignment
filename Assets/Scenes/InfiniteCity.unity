@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1135460845283246, guid: a326b7283b7d786468acf3675f8db670, type: 2}
-  building: {fileID: 1554088581518116, guid: f1f4ef33d48035b46af2d9342aa97d71, type: 2}
+  tallbuilding: {fileID: 1554088581518116, guid: f1f4ef33d48035b46af2d9342aa97d71,
+    type: 2}
   roadseg1: {fileID: 1950518545194638, guid: f9af5419488e6c44cacb03f80f8a5df6, type: 2}
   roadseg2: {fileID: 1690913093984548, guid: 80c28fa594afcdb4f956c1c656713e26, type: 2}
   player: {fileID: 98255741}
