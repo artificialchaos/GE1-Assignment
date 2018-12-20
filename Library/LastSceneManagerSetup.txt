@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/99991/Downloads/ProceduralCities2/ProceduralCities2/Assets/city.unity
+- path: Assets/Scenes/InfiniteCity.unity
   isLoaded: 1
   isActive: 1

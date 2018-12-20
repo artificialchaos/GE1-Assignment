@@ -11,13 +11,14 @@ public class TerrainGeneration : MonoBehaviour
     public GameObject car;
     public GameObject roadseg1;
     public GameObject roadseg2;
-    public Transform player;
 
+    public Transform player;
     public int quadsPerTile;
     public int halfTile = 5;
     Vector3 startPos;
 
-    //classes for each type of object that will be generated 
+    //classes for each type of object that will be generated
+
     class Tile
     {
         public GameObject theTile;
@@ -59,10 +60,11 @@ public class TerrainGeneration : MonoBehaviour
 
     void Start()
     {
-        PerlinTerrain pt = tilePrefab.GetComponent<PerlinTerrain>();
-        if (pt != null)
+
+        PerlinTerrain tt = tilePrefab.GetComponent<PerlinTerrain>();
+        if (tt != null)
         {
-            quadsPerTile = pt.quadsPerTile;
+            quadsPerTile = tt.quadsPerTile;
         }
 
         if (player == null)
@@ -70,21 +72,20 @@ public class TerrainGeneration : MonoBehaviour
             player = Camera.main.transform;
         }
 
-        StartCoroutine(GenerateWorld());
+        StartCoroutine(GenerateWorldAroundPlayer());
 
     }
 
     //objects to be removed from the scene
     Queue<GameObject> oldGameObjects = new Queue<GameObject>();
-    //dictionaries for keeping track of each object 
     Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
     Dictionary<string, Road> roads = new Dictionary<string, Road>();
     Dictionary<string, Building> buildings = new Dictionary<string, Building>();
 
-    //array containing values representing the 4 directions the car can face 
+    //array containing values representing the 4 directions the car can face
     int[] carRotation = { 0, 90, 180, 270 };
 
-    private IEnumerator GenerateWorld()
+    private IEnumerator GenerateWorldAroundPlayer()
     {
         int xMove = int.MaxValue;
         int zMove = int.MaxValue;
@@ -114,7 +115,6 @@ public class TerrainGeneration : MonoBehaviour
                     {
                         Vector3 pos = new Vector3((x * quadsPerTile + playerX), 0, (z * quadsPerTile + playerZ));
 
-                        //
                         string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                         string roadname1 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_1";
                         string roadname2 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_2";
@@ -174,6 +174,7 @@ public class TerrainGeneration : MonoBehaviour
                         }
                     }
                 }
+
                 //sort objects by distance from player
                 newTiles.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
                 newRoads.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
@@ -221,7 +222,6 @@ public class TerrainGeneration : MonoBehaviour
                     int b3_height = rnd.Next(20, 60);
                     int b4_height = rnd.Next(20, 60);
 
-                  
                     GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
                     b1.transform.localScale = new Vector3(5, b1_height, 5);
                     GameObject b2 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
@@ -268,6 +268,7 @@ public class TerrainGeneration : MonoBehaviour
                     b2.name = towername2;
                     b3.name = towername3;
                     b4.name = towername4;
+
 
                     //objects are instantiated and stored
                     Road road1 = new Road(r1, updateTime);

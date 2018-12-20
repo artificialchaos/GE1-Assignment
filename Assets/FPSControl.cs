@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-
-//fps class used to controll camera using the mouse -- taken from examples in class
 public class FPSControl : MonoBehaviour
 {
+    //fps class used to controll camera using the mouse -- taken from examples in class
     public GameObject mainCamera;
     public float speed = 50.0f;
     public float lookSpeed = 150.0f;
@@ -67,7 +66,7 @@ public class FPSControl : MonoBehaviour
         float mouseX, mouseY;
         float speed = this.speed;
 
-        float runAxis = 0; 
+        float runAxis = 0;
 
         if (Input.GetKey(KeyCode.Escape))
         {
