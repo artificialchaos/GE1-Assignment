@@ -8,9 +8,8 @@ public class MoveCar : MonoBehaviour {
 		
 	}
 	
-	
+	//Moves car forward
 	void Update () {
         transform.Translate(Vector3.forward * Time.deltaTime * 5);
-
     }
 }

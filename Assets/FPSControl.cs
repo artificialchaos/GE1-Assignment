@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+
+//fps class used to controll camera using the mouse -- taken from examples in class
 public class FPSControl : MonoBehaviour
 {
     public GameObject mainCamera;

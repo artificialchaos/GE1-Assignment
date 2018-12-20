@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class TerrainGeneration : MonoBehaviour
 {
+    //define prefabs
     public GameObject tilePrefab;
     public GameObject tallbuilding;
     public GameObject house;
     public GameObject car;
     public GameObject roadseg1;
     public GameObject roadseg2;
-
     public Transform player;
+
     public int quadsPerTile;
-
     public int halfTile = 5;
-
     Vector3 startPos;
 
+    //classes for each type of object that will be generated 
     class Tile
     {
         public GameObject theTile;
@@ -59,12 +59,10 @@ public class TerrainGeneration : MonoBehaviour
 
     void Start()
     {
-        //Vector3[] tileMeshVertices = tilePrefab.GetComponent<MeshCollider>().sharedMesh.vertices;
-        //Debug.Log(tileMeshVertices);
-        PerlinTerrain tt = tilePrefab.GetComponent<PerlinTerrain>();
-        if (tt != null)
+        PerlinTerrain pt = tilePrefab.GetComponent<PerlinTerrain>();
+        if (pt != null)
         {
-            quadsPerTile = tt.quadsPerTile;
+            quadsPerTile = pt.quadsPerTile;
         }
 
         if (player == null)
@@ -72,18 +70,21 @@ public class TerrainGeneration : MonoBehaviour
             player = Camera.main.transform;
         }
 
-        StartCoroutine(GenerateWorldAroundPlayer());
+        StartCoroutine(GenerateWorld());
 
     }
 
+    //objects to be removed from the scene
     Queue<GameObject> oldGameObjects = new Queue<GameObject>();
+    //dictionaries for keeping track of each object 
     Dictionary<string, Tile> tiles = new Dictionary<string, Tile>();
     Dictionary<string, Road> roads = new Dictionary<string, Road>();
     Dictionary<string, Building> buildings = new Dictionary<string, Building>();
 
+    //array containing values representing the 4 directions the car can face 
     int[] carRotation = { 0, 90, 180, 270 };
 
-    private IEnumerator GenerateWorldAroundPlayer()
+    private IEnumerator GenerateWorld()
     {
         int xMove = int.MaxValue;
         int zMove = int.MaxValue;
@@ -101,6 +102,7 @@ public class TerrainGeneration : MonoBehaviour
                 int playerX = (int)(Mathf.Floor((player.transform.position.x) / (quadsPerTile)) * quadsPerTile);
                 int playerZ = (int)(Mathf.Floor((player.transform.position.z) / (quadsPerTile)) * quadsPerTile);
 
+                //lists of objects to be generated
                 List<Vector3> newTiles = new List<Vector3>();
                 List<Vector3> newRoads = new List<Vector3>();
                 List<Vector3> newBuildings = new List<Vector3>();
@@ -112,6 +114,7 @@ public class TerrainGeneration : MonoBehaviour
                     {
                         Vector3 pos = new Vector3((x * quadsPerTile + playerX), 0, (z * quadsPerTile + playerZ));
 
+                        //
                         string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                         string roadname1 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_1";
                         string roadname2 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_2";
@@ -130,6 +133,7 @@ public class TerrainGeneration : MonoBehaviour
                         string housename7 = "House_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_7";
                         string housename8 = "House_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_8";
 
+                        //objects added to hash tables
                         if (!tiles.ContainsKey(tilename))
                         {
                             newTiles.Add(pos);
@@ -170,7 +174,7 @@ public class TerrainGeneration : MonoBehaviour
                         }
                     }
                 }
-
+                //sort objects by distance from player
                 newTiles.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
                 newRoads.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
                 newBuildings.Sort((a, b) => (int)Vector3.SqrMagnitude(player.transform.position - a) - (int)Vector3.SqrMagnitude(player.transform.position - b));
@@ -179,17 +183,19 @@ public class TerrainGeneration : MonoBehaviour
                 {
                     System.Random rnd = new System.Random();
 
+                    //tile is created
                     GameObject t = GameObject.Instantiate<GameObject>(tilePrefab, pos, Quaternion.identity);
                     t.transform.parent = this.transform;
 
+                    //car direction is chosen randomly
                     int direction = rnd.Next(0, 4);
                     int rotation = carRotation[direction];
                     GameObject cr = GameObject.Instantiate<GameObject>(car, new Vector3(pos.x, pos.y + 6, pos.z), Quaternion.Euler(0, rotation, 0));
-                    //cr.transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
 
                     GameObject r1 = GameObject.Instantiate<GameObject>(roadseg1, new Vector3(pos.x, pos.y + 4, pos.z), Quaternion.identity);
                     GameObject r2 = GameObject.Instantiate<GameObject>(roadseg2, new Vector3(pos.x, pos.y + 4, pos.z), Quaternion.identity);
 
+                    //random variables dictating position objects are created relative to tile
                     int xdisplacement = rnd.Next(10, 35);
                     int ydisplacement = rnd.Next(10, 35);
 
@@ -209,12 +215,13 @@ public class TerrainGeneration : MonoBehaviour
                     GameObject h8 = GameObject.Instantiate<GameObject>(house, new Vector3(pos.x - xdisplacement, pos.y + 8, pos.z - house_displacement_2), Quaternion.identity);
 
 
-
+                    //height of towers is randomized
                     int b1_height = rnd.Next(20, 60);
                     int b2_height = rnd.Next(20, 60);
                     int b3_height = rnd.Next(20, 60);
                     int b4_height = rnd.Next(20, 60);
 
+                  
                     GameObject b1 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x + xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
                     b1.transform.localScale = new Vector3(5, b1_height, 5);
                     GameObject b2 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z + ydisplacement), Quaternion.identity);
@@ -224,6 +231,7 @@ public class TerrainGeneration : MonoBehaviour
                     GameObject b4 = GameObject.Instantiate<GameObject>(tallbuilding, new Vector3(pos.x - xdisplacement, pos.y + 10, pos.z - ydisplacement), Quaternion.identity);
                     b4.transform.localScale = new Vector3(5, b4_height, 5);
 
+                    //each object must have a name for reference
                     string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                     string roadname1 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_1";
                     string roadname2 = "Road_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString() + "_2";
@@ -261,7 +269,7 @@ public class TerrainGeneration : MonoBehaviour
                     b3.name = towername3;
                     b4.name = towername4;
 
-
+                    //objects are instantiated and stored
                     Road road1 = new Road(r1, updateTime);
                     Road road2 = new Road(r2, updateTime);
                     Tile tile = new Tile(t, updateTime);
@@ -301,6 +309,7 @@ public class TerrainGeneration : MonoBehaviour
                     yield return null;
                 }
 
+                //newly created tiles stored in hashtables with tiles still close to the player
                 Dictionary<string, Tile> newTerrain = new Dictionary<string, Tile>();
                 Dictionary<string, Road> newRoadSystem = new Dictionary<string, Road>();
                 Dictionary<string, Building> newSkyline = new Dictionary<string, Building>();
@@ -344,6 +353,7 @@ public class TerrainGeneration : MonoBehaviour
                 startPos = player.transform.position;
             }
             yield return null;
+            //calculate change in player position
             xMove = (int)(player.transform.position.x - startPos.x);
             zMove = (int)(player.transform.position.z - startPos.z);
         }
